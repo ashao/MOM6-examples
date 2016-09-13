@@ -1,56 +1,4 @@
 ! This file was written by the model and records all non-layout parameters used at run-time.
-REENTRANT_X = False             !   [Boolean] default = True
-                                ! If true, the domain is zonally reentrant.
-REENTRANT_Y = False             !   [Boolean] default = False
-                                ! If true, the domain is meridionally reentrant.
-TRIPOLAR_N = False              !   [Boolean] default = False
-                                ! Use tripolar connectivity at the northern edge of the
-                                ! domain.  With TRIPOLAR_N, NIGLOBAL must be even.
-NIGLOBAL = 23                   !
-                                ! The total number of thickness grid points in the
-                                ! x-direction in the physical domain. With STATIC_MEMORY_
-                                ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 14                   !
-                                ! The total number of thickness grid points in the
-                                ! y-direction in the physical domain. With STATIC_MEMORY_
-                                ! this is set in MOM_memory.h at compile time.
-
-! === module MOM_grid ===
-! Parameters providing information about the lateral grid.
-G_EARTH = 9.8                   !   [m s-2] default = 9.8
-                                ! The gravitational acceleration of the Earth.
-FIRST_DIRECTION = 0             ! default = 0
-                                ! An integer that indicates which direction goes first
-                                ! in parts of the code that use directionally split
-                                ! updates, with even numbers (or 0) used for x- first
-                                ! and odd numbers used for y-first.
-BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
-                                ! If true, there are separate values for the basin depths
-                                ! at velocity points.  Otherwise the effects of of
-                                ! topography are entirely determined from thickness points.
-
-! === module MOM_hor_index ===
-! Sets the horizontal array index types.
-
-! === module MOM_verticalGrid ===
-! Parameters providing information about the vertical grid.
-RHO_0 = 1035.0                  !   [kg m-3] default = 1035.0
-                                ! The mean ocean density used with BOUSSINESQ true to
-                                ! calculate accelerations and the mass for conservation
-                                ! properties, or with BOUSSINSEQ false to convert some
-                                ! parameters from vertical units of m to kg m-2.
-BOUSSINESQ = True               !   [Boolean] default = True
-                                ! If true, make the Boussinesq approximation.
-ANGSTROM = 1.0E-10              !   [m] default = 1.0E-10
-                                ! The minumum layer thickness, usually one-Angstrom.
-H_TO_M = 1.0                    !   [m H-1] default = 1.0
-                                ! A constant that translates the model's internal
-                                ! units of thickness into m.
-NK = 63                         !   [nondim]
-                                ! The number of model layers.
-AVAILABLE_DIAGS_FILE = "available_diags.000000" ! default = "available_diags.000000"
-                                ! A file into which to write a list of all available
-                                ! ocean diagnostics that can be included in a diag_table.
 
 ! === module MOM ===
 VERBOSITY = 2                   ! default = 2
@@ -79,21 +27,26 @@ ADIABATIC = False               !   [Boolean] default = False
                                 ! true. This assumes that KD = KDML = 0.0 and that
                                 ! there is no buoyancy forcing, but makes the model
                                 ! faster by eliminating subroutine calls.
+USE_REGRIDDING = False          !   [Boolean] default = False
+                                ! If True, use the ALE algorithm (regridding/remapping).
+                                ! If False, use the layered isopycnal algorithm.
 BULKMIXEDLAYER = True           !   [Boolean] default = True
                                 ! If true, use a Kraus-Turner-like bulk mixed layer
                                 ! with transitional buffer layers.  Layers 1 through
                                 ! NKML+NKBL have variable densities. There must be at
                                 ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true.
-                                ! The default is the same setting as ENABLE_THERMODYNAMICS.
-USE_REGRIDDING = False          !   [Boolean] default = False
-                                ! If True, use the ALE algorithm (regridding/remapping).
-                                ! If False, use the layered isopycnal algorithm.
+                                ! BULKMIXEDLAYER can not be used with USE_REGRIDDING.
+                                ! The default is influenced by ENABLE_THERMODYNAMICS.
 THICKNESSDIFFUSE = True         !   [Boolean] default = False
                                 ! If true, interface heights are diffused with a
                                 ! coefficient of KHTH.
-THICKNESSDIFFUSE_FIRST = True   !   [Boolean] default = False
+`_FIRST = False                 !   [Boolean] default = False
                                 ! If true, do thickness diffusion before dynamics.
                                 ! This is only used if THICKNESSDIFFUSE is true.
+BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
+                                ! If true, there are separate values for the basin depths
+                                ! at velocity points.  Otherwise the effects of topography
+                                ! are entirely determined from thickness points.
 DEBUG = False                   !   [Boolean] default = False
                                 ! If true, write out verbose debugging data.
 DEBUG_TRUNCATIONS = False       !   [Boolean] default = False
@@ -160,6 +113,11 @@ NKML = 2                        !   [nondim] default = 2
 NKBL = 2                        !   [nondim] default = 2
                                 ! The number of layers that are used as variable density
                                 ! buffer layers if BULKMIXEDLAYER is true.
+FIRST_DIRECTION = 0             ! default = 0
+                                ! An integer that indicates which direction goes first
+                                ! in parts of the code that use directionally split
+                                ! updates, with even numbers (or 0) used for x- first
+                                ! and odd numbers used for y-first.
 CHECK_BAD_SURFACE_VALS = False  !   [Boolean] default = False
                                 ! If true, check the surface state for ridiculous values.
 SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
@@ -173,7 +131,48 @@ WRITE_GEOM = 1                  ! default = 1
                                 ! a new simulation. If =2, always write the geometry and
                                 ! vertical grid files. Other values are invalid.
 
+! === module MOM_domains ===
+REENTRANT_X = False             !   [Boolean] default = True
+                                ! If true, the domain is zonally reentrant.
+REENTRANT_Y = False             !   [Boolean] default = False
+                                ! If true, the domain is meridionally reentrant.
+TRIPOLAR_N = False              !   [Boolean] default = False
+                                ! Use tripolar connectivity at the northern edge of the
+                                ! domain.  With TRIPOLAR_N, NIGLOBAL must be even.
+NIGLOBAL = 23                   !
+                                ! The total number of thickness grid points in the
+                                ! x-direction in the physical domain. With STATIC_MEMORY_
+                                ! this is set in MOM_memory.h at compile time.
+NJGLOBAL = 14                   !
+                                ! The total number of thickness grid points in the
+                                ! y-direction in the physical domain. With STATIC_MEMORY_
+                                ! this is set in MOM_memory.h at compile time.
+
+! === module MOM_hor_index ===
+! Sets the horizontal array index types.
+
+! === module MOM_verticalGrid ===
+! Parameters providing information about the vertical grid.
+G_EARTH = 9.8                   !   [m s-2] default = 9.8
+                                ! The gravitational acceleration of the Earth.
+RHO_0 = 1035.0                  !   [kg m-3] default = 1035.0
+                                ! The mean ocean density used with BOUSSINESQ true to
+                                ! calculate accelerations and the mass for conservation
+                                ! properties, or with BOUSSINSEQ false to convert some
+                                ! parameters from vertical units of m to kg m-2.
+BOUSSINESQ = True               !   [Boolean] default = True
+                                ! If true, make the Boussinesq approximation.
+ANGSTROM = 1.0E-10              !   [m] default = 1.0E-10
+                                ! The minumum layer thickness, usually one-Angstrom.
+H_TO_M = 1.0                    !   [m H-1] default = 1.0
+                                ! A constant that translates the model's internal
+                                ! units of thickness into m.
+NK = 63                         !   [nondim]
+                                ! The number of model layers.
+
 ! === module MOM_tracer_registry ===
+
+! === module MOM_EOS ===
 EQN_OF_STATE = "WRIGHT"         ! default = "WRIGHT"
                                 ! EQN_OF_STATE determines which ocean equation of state
                                 ! should be used.  Currently, the valid choices are
@@ -198,6 +197,8 @@ DTFREEZE_DP = 0.0               !   [deg C Pa-1] default = 0.0
                                 ! When TFREEZE_FORM=LINEAR,
                                 ! this is the derivative of the freezing potential
                                 ! temperature with pressure.
+
+! === module MOM_restart ===
 PARALLEL_RESTARTFILES = False   !   [Boolean] default = False
                                 ! If true, each processor writes its own restart file,
                                 ! otherwise a single restart file is generated
@@ -214,13 +215,17 @@ USE_USER_TRACER_EXAMPLE = False !   [Boolean] default = False
                                 ! If true, use the USER_tracer_example tracer package.
 USE_DOME_TRACER = False         !   [Boolean] default = False
                                 ! If true, use the DOME_tracer tracer package.
+USE_ISOMIP_TRACER = False       !   [Boolean] default = False
+                                ! If true, use the ISOMIP_tracer tracer package.
 USE_IDEAL_AGE_TRACER = True     !   [Boolean] default = False
                                 ! If true, use the ideal_age_example tracer package.
+USE_REGIONAL_DYES = False       !   [Boolean] default = False
+                                ! If true, use the regional_dyes tracer package.
 USE_OIL_TRACER = False          !   [Boolean] default = False
                                 ! If true, use the oil_tracer tracer package.
 USE_ADVECTION_TEST_TRACER = False !   [Boolean] default = False
                                 ! If true, use the advection_test_tracer tracer package.
-USE_OCMIP2_CFC = True           !   [Boolean] default = False
+USE_OCMIP2_CFC = False          !   [Boolean] default = False
                                 ! If true, use the MOM_OCMIP2_CFC tracer package.
 USE_generic_tracer = False      !   [Boolean] default = False
                                 ! If true and _USE_GENERIC_TRACER is defined as a
@@ -253,56 +258,7 @@ TRACERS_MAY_REINIT = False      !   [Boolean] default = False
                                 ! it is a fatal error if the tracers are not found in the
                                 ! restart files of a restarted run.
 
-! === module MOM_OCMIP2_CFC ===
-CFC_IC_FILE = ""                ! default = ""
-                                ! The file in which the CFC initial values can be
-                                ! found, or an empty string for internal initialization.
-CFC_IC_FILE_IS_Z = False        !   [Boolean] default = False
-                                ! If true, CFC_IC_FILE is in depth space, not layer space
-CFC11_A1 = 3501.8               !   [nondim] default = 3501.8
-                                ! A coefficient in the Schmidt number of CFC11.
-CFC11_A2 = -210.31              !   [degC-1] default = -210.31
-                                ! A coefficient in the Schmidt number of CFC11.
-CFC11_A3 = 6.1851               !   [degC-2] default = 6.1851
-                                ! A coefficient in the Schmidt number of CFC11.
-CFC11_A4 = -0.07513             !   [degC-3] default = -0.07513
-                                ! A coefficient in the Schmidt number of CFC11.
-CFC12_A1 = 3845.4               !   [nondim] default = 3845.4
-                                ! A coefficient in the Schmidt number of CFC12.
-CFC12_A2 = -228.95              !   [degC-1] default = -228.95
-                                ! A coefficient in the Schmidt number of CFC12.
-CFC12_A3 = 6.1908               !   [degC-2] default = 6.1908
-                                ! A coefficient in the Schmidt number of CFC12.
-CFC12_A4 = -0.06743             !   [degC-3] default = -0.06743
-                                ! A coefficient in the Schmidt number of CFC12.
-CFC11_D1 = -229.9261            !   [none] default = -229.9261
-                                ! A coefficient in the solubility of CFC11.
-CFC11_D2 = 319.6552             !   [hK] default = 319.6552
-                                ! A coefficient in the solubility of CFC11.
-CFC11_D3 = 119.4471             !   [none] default = 119.4471
-                                ! A coefficient in the solubility of CFC11.
-CFC11_D4 = -1.39165             !   [hK-2] default = -1.39165
-                                ! A coefficient in the solubility of CFC11.
-CFC11_E1 = -0.142382            !   [PSU-1] default = -0.142382
-                                ! A coefficient in the solubility of CFC11.
-CFC11_E2 = 0.091459             !   [PSU-1 hK-1] default = 0.091459
-                                ! A coefficient in the solubility of CFC11.
-CFC11_E3 = -0.0157274           !   [PSU-1 hK-2] default = -0.0157274
-                                ! A coefficient in the solubility of CFC11.
-CFC12_D1 = -218.0971            !   [none] default = -218.0971
-                                ! A coefficient in the solubility of CFC12.
-CFC12_D2 = 298.9702             !   [hK] default = 298.9702
-                                ! A coefficient in the solubility of CFC12.
-CFC12_D3 = 113.8049             !   [none] default = 113.8049
-                                ! A coefficient in the solubility of CFC12.
-CFC12_D4 = -1.39165             !   [hK-2] default = -1.39165
-                                ! A coefficient in the solubility of CFC12.
-CFC12_E1 = -0.143566            !   [PSU-1] default = -0.143566
-                                ! A coefficient in the solubility of CFC12.
-CFC12_E2 = 0.091015             !   [PSU-1 hK-1] default = 0.091015
-                                ! A coefficient in the solubility of CFC12.
-CFC12_E3 = -0.0153924           !   [PSU-1 hK-2] default = -0.0153924
-                                ! A coefficient in the solubility of CFC12.
+! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
 
@@ -351,9 +307,15 @@ MINIMUM_DEPTH = 0.5             !   [m] default = 0.0
                                 ! MINIMUM_DEPTH is assumed to be land and all fluxes are masked out.
                                 ! If MASKING_DEPTH is specified, then all depths shallower than
                                 ! MINIMUM_DEPTH but deeper than MASKING_DEPTH are rounded to MINIMUM_DEPTH.
-MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
-                                ! The depth below which to mask points as land points, for which all
-                                ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
+
+! === module MOM_open_boundary ===
+! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
+APPLY_OBC_U = False             !   [Boolean] default = False
+                                ! If true, open boundary conditions may be set at some
+                                ! u-points, with the configuration controlled by OBC_CONFIG
+APPLY_OBC_V = False             !   [Boolean] default = False
+                                ! If true, open boundary conditions may be set at some
+                                ! v-points, with the configuration controlled by OBC_CONFIG
 APPLY_OBC_U_FLATHER_EAST = False !   [Boolean] default = False
                                 ! Apply a Flather open boundary condition on the eastern
                                 ! side of the global domain
@@ -366,6 +328,9 @@ APPLY_OBC_V_FLATHER_NORTH = False !   [Boolean] default = False
 APPLY_OBC_V_FLATHER_SOUTH = False !   [Boolean] default = False
                                 ! Apply a Flather open boundary condition on the southern
                                 ! side of the global domain
+MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
+                                ! The depth below which to mask points as land points, for which all
+                                ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
 CHANNEL_CONFIG = "global_1deg"  ! default = "none"
                                 ! A parameter that determines which set of channels are
                                 ! restricted to specific  widths.  Options are:
@@ -385,10 +350,14 @@ ROTATION = "2omegasinlat"       ! default = "2omegasinlat"
                                 !     USER - call a user modified routine.
 OMEGA = 7.2921E-05              !   [s-1] default = 7.2921E-05
                                 ! The rotation rate of the earth.
+
+! === module MOM_coord_initialization ===
 COORD_CONFIG = "file"           !
                                 ! This specifies how layers are to be defined:
                                 !     file - read coordinate information from the file
                                 !       specified by (COORD_FILE).
+                                !     BFB - Custom coords for buoyancy-forced basin case
+                                !       based on SST_S, T_BOT and DRHO_DT.
                                 !     linear - linear based on interfaces not layers
                                 !     layer_ref - linear based on layer densities
                                 !     ts_ref - use reference temperature and salinity
@@ -407,10 +376,17 @@ COORD_FILE = "GOLD_IC.2010.11.15.nc" !
 COORD_VAR = "Layer"             ! default = "Layer"
                                 ! The variable in COORD_FILE that is to be used for the
                                 ! coordinate densities.
+
+! === module MOM_grid ===
+! Parameters providing information about the lateral grid.
+
+! === module MOM_state_initialization ===
 INIT_LAYERS_FROM_Z_FILE = True  !   [Boolean] default = False
                                 ! If true, intialize the layer thicknesses, temperatures,
                                 ! and salnities from a Z-space file on a latitude-
                                 ! longitude grid.
+
+! === module MOM_initialize_layers_from_Z ===
 TEMP_SALT_Z_INIT_FILE = "WOA05_pottemp_salt.nc" ! default = "temp_salt_z.nc"
                                 ! The name of the z-space input file used to initialize
                                 ! the layer thicknesses, temperatures and salinities.
@@ -472,12 +448,11 @@ SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
                                 ! specified via SPONGE_CONFIG.
-APPLY_OBC_U = False             !   [Boolean] default = False
-                                ! If true, open boundary conditions may be set at some
-                                ! u-points, with the configuration controlled by OBC_CONFIG
-APPLY_OBC_V = False             !   [Boolean] default = False
-                                ! If true, open boundary conditions may be set at some
-                                ! v-points, with the configuration controlled by OBC_CONFIG
+AVAILABLE_DIAGS_FILE = "available_diags.000000" ! default = "available_diags.000000"
+                                ! A file into which to write a list of all available
+                                ! ocean diagnostics that can be included in a diag_table.
+
+! === module MOM_diag_mediator ===
 DIAG_REMAP_Z_GRID_DEF = "FILE:OM3_zgrid.nc,zw" ! default = ""
                                 ! This sets the file and variable names that define the
                                 ! vertical grid used for diagnostic output remapping to
@@ -488,6 +463,10 @@ DIAG_REMAP_Z_GRID_DEF = "FILE:OM3_zgrid.nc,zw" ! default = ""
                                 !                           contains interface positions.
                                 !  UNIFORM                - vertical grid is uniform
                                 !                           between surface and max depth.
+DIAG_REMAP_Z_MODULE_SUFFIX = "_z_new" ! default = "_z_new"
+                                ! This is the string attached to the end of "ocean_model"
+                                ! for use in the model column of the diag_table to indicate
+                                ! a diagnostic should be remapped to z*-coordinates.
 
 ! === module MOM_MEKE ===
 USE_MEKE = False                !   [Boolean] default = False
@@ -582,7 +561,7 @@ LINEAR_DRAG = False             !   [Boolean] default = False
 DOUBLE_DIFFUSION = False        !   [Boolean] default = False
                                 ! If true, increase diffusivitives for temperature or salt
                                 ! based on double-diffusive paramaterization from MOM4/KPP.
-PRANDTL_TURB = 0.0              !   [nondim] default = 0.0
+PRANDTL_TURB = 1.0              !   [nondim] default = 1.0
                                 ! The turbulent Prandtl number applied to shear
                                 ! instability.
 DYNAMIC_VISCOUS_ML = True       !   [Boolean] default = False
@@ -599,10 +578,10 @@ TKE_DECAY_VISC = 10.0           !   [nondim] default = 10.0
                                 ! natural Ekman depth for use in calculating the dynamic
                                 ! mixed layer viscosity.  By default,
                                 ! TKE_DECAY_VISC = TKE_DECAY or 0.
-ML_USE_OMEGA = True             !   [Boolean] default = False
-                                ! If true, use the absolute rotation rate instead of the
-                                ! vertical component of rotation when setting the decay
-                                ! scale for turbulence.
+ML_OMEGA_FRAC = 0.0             !   [nondim] default = 0.0
+                                ! When setting the decay scale for turbulence, use this
+                                ! fraction of the absolute rotation rate blended with the
+                                ! local value of f, as sqrt((1-of)*f^2 + of*4*omega^2).
 HBBL = 10.0                     !   [m]
                                 ! The thickness of a bottom boundary layer with a
                                 ! viscosity of KVBBL if BOTTOMDRAGLAW is not defined, or
@@ -674,11 +653,15 @@ BT_USE_LAYER_FLUXES = True      !   [Boolean] default = True
                                 ! If true, use the summed layered fluxes plus an
                                 ! adjustment due to the change in the barotropic velocity
                                 ! in the barotropic continuity equation.
+
+! === module MOM_continuity ===
 CONTINUITY_SCHEME = "PPM"       ! default = "PPM"
                                 ! CONTINUITY_SCHEME selects the discretization for the
                                 ! continuity solver. The only valid value currently is:
                                 !    PPM - use a positive-definite (or monotonic)
                                 !          piecewise parabolic reconstruction solver.
+
+! === module MOM_continuity_PPM ===
 MONOTONIC_CONTINUITY = False    !   [Boolean] default = False
                                 ! If true, CONTINUITY_PPM uses the Colella and Woodward
                                 ! monotonic limiter.  The default (false) is to use a
@@ -733,6 +716,8 @@ CONT_PPM_MARGINAL_FACE_AREAS = True !   [Boolean] default = True
                                 ! If true, use the marginal face areas from the continuity
                                 ! solver for use as the weights in the barotropic solver.
                                 ! Otherwise use the transport averaged areas.
+
+! === module MOM_CoriolisAdv ===
 NOSLIP = False                  !   [Boolean] default = False
                                 ! If true, no slip boundary conditions are used; otherwise
                                 ! free slip boundary conditions are assumed. The
@@ -768,12 +753,16 @@ PV_ADV_SCHEME = "PV_ADV_CENTERED" ! default = "PV_ADV_CENTERED"
                                 ! advection. Valid values are:
                                 !    PV_ADV_CENTERED - centered (aka Sadourny, 75)
                                 !    PV_ADV_UPWIND1  - upwind, first order
+
+! === module MOM_PressureForce ===
 ANALYTIC_FV_PGF = True          !   [Boolean] default = True
                                 ! If true the pressure gradient forces are calculated
                                 ! with a finite volume form that analytically integrates
                                 ! the equations of state in pressure to avoid any
                                 ! possibility of numerical thermobaric instability, as
                                 ! described in Adcroft et al., O. Mod. (2008).
+
+! === module MOM_PressureForce_AFV ===
 MASS_WEIGHT_IN_PRESSURE_GRADIENT = False !   [Boolean] default = False
                                 ! If true, use mass weighting when interpolation T/S for
                                 ! top/bottom integrals in AFV pressure gradient calculation.
@@ -1032,6 +1021,8 @@ FOX_KEMPER_ML_RESTRAT_COEF = 20.0 !   [nondim] default = 0.0
                                 ! geostrophic kinetic energy or 1 plus the square of the
                                 ! grid spacing over the deformation radius, as detailed
                                 ! by Fox-Kemper et al. (2010)
+
+! === module MOM_diag_to_Z ===
 Z_OUTPUT_GRID_FILE = "OM3_zgrid.nc" ! default = ""
                                 ! The file that specifies the vertical grid for
                                 ! depth-space diagnostics, or blank to disable
@@ -1046,6 +1037,10 @@ ENERGETICS_SFC_PBL = False      !   [Boolean] default = False
                                 ! If true, use an implied energetics planetary boundary
                                 ! layer scheme to determine the diffusivity and viscosity
                                 ! in the surface boundary layer.
+EPBL_IS_ADDITIVE = True         !   [Boolean] default = True
+                                ! If true, the diffusivity from ePBL is added to all
+                                ! other diffusivities. Otherwise, the larger of kappa-
+                                ! shear and ePBL diffusivities are used.
 ML_MIX_FIRST = 0.0              !   [nondim] default = 0.0
                                 ! The fraction of the mixed layer mixing that is applied
                                 ! before interior diapycnal mixing.  0 by default.
@@ -1136,6 +1131,8 @@ GEOTHERMAL_DRHO_DT_INPLACE = -0.01 !   [kg m-3 K-1] default = -0.01
 GEOTHERMAL_VARNAME = "geo_heat" ! default = "geo_heat"
                                 ! The name of the geothermal heating variable in
                                 ! GEOTHERMAL_FILE.
+
+! === module MOM_set_diffusivity ===
 FLUX_RI_MAX = 0.2               !   [not defined] default = 0.2
                                 ! The flux Richardson number where the stratification is
                                 ! large enough that N2 > omega2.  The full expression for
@@ -1436,6 +1433,10 @@ ML_RESORT = True                !   [Boolean] default = False
 ML_PRESORT_NK_CONV_ADJ = 4      !   [nondim] default = 0
                                 ! Convectively mix the first ML_PRESORT_NK_CONV_ADJ
                                 ! layers before sorting when ML_RESORT is true.
+BML_USTAR_MIN = 1.45842E-18     !   [m s-1] default = 1.45842E-18
+                                ! The minimum value of ustar that should be used by the
+                                ! bulk mixed layer model in setting vertical TKE decay
+                                ! scales. This must be greater than 0.
 RESOLVE_EKMAN = False           !   [Boolean] default = False
                                 ! If true, the NKML>1 layers in the mixed layer are
                                 ! chosen to optimally represent the impact of the Ekman
@@ -1548,107 +1549,69 @@ ML_KHTR_SCALE = 0.0             !   [nondim] default = 1.0
 ! This module implements neutral diffusion of tracers
 USE_NEUTRAL_DIFFUSION = False   !   [Boolean] default = False
                                 ! If true, enables the neutral diffusion module.
+
+! === module offline_transport ===
+! This module allows for tracers to be run offline
+OFFLINEDIR = "ONLINE/"          ! default = ""
+                                ! Input directory where the offline fields can be found
+OFF_MEAN_FILE = ""              ! default = ""
+                                ! Filename where time-averaged fields are fund can be found
+OFF_SUM_FILE = "00010101.off_sum.nc" ! default = ""
+                                ! Filename where the accumulated fields can be found
+OFF_SNAP_FILE = "00010101.off_snap.nc" ! default = ""
+                                ! Filename where snapshot fields can be found
+OFF_PREALE_FILE = ""            ! default = ""
+                                ! Filename where the preale T, S, u, v, and h fields are found
+START_INDEX = 1                 ! default = 1
+                                ! Which time index to start from
+NUMTIME = 31                    ! default = 0
+                                ! Number of timelevels in offline input files
+FIELDS_ARE_OFFSET = False       !   [Boolean] default = False
+                                ! True if the time-averaged fields and snapshot fields are offset by one time level
+NUM_OFF_ITER = 100              !
+                                ! Number of iterations to subdivide the offline tracer advection and diffusion
+DT_OFFLINE = 8.64E+04           !   [not defined]
+                                ! Length of the offline timestep
+MAX_OFF_CFL = 0.9               !   [nondim] default = 0.9
+                                ! Maximum CFL when advection is done offline. This should be less than 1
 OBSOLETE_DIAGNOSTIC_IS_FATAL = True !   [Boolean] default = True
                                 ! If an obsolete diagnostic variable appears in the diag_table
                                 ! then cause a FATAL error rather than issue a WARNING.
 
-! === module ocean_model_init ===
-RESTART_CONTROL = 1             ! default = 1
-                                ! An integer whose bits encode which restart files are
-                                ! written. Add 2 (bit 1) for a time-stamped file, and odd
-                                ! (bit 0) for a non-time-stamped file.  A restart file
-                                ! will be saved at the end of the run segment for any
-                                ! non-negative value.
-TIMEUNIT = 8.64E+04             !   [s] default = 8.64E+04
-                                ! The time unit for ENERGYSAVEDAYS.
-ENERGYSAVEDAYS = 0.25           !   [days] default = 1.0
-                                ! The interval in units of TIMEUNIT between saves of the
-                                ! energies of the run and other globally summed diagnostics.
-OCEAN_SURFACE_STAGGER = "C"     ! default = "C"
-                                ! A case-insensitive character string to indicate the
-                                ! staggering of the surface velocity field that is
-                                ! returned to the coupler.  Valid values include
-                                ! 'A', 'B', or 'C'.
-RESTORE_SALINITY = True         !   [Boolean] default = False
-                                ! If true, the coupled driver will add a globally-balanced
-                                ! fresh-water flux that drives sea-surface salinity
-                                ! toward specified values.
-ICE_SHELF = False               !   [Boolean] default = False
-                                ! If true, enables the ice shelf model.
-
 ! === module MOM_surface_forcing ===
+VARIABLE_WINDS = True           !   [Boolean] default = True
+                                ! If true, the winds vary in time after the initialization.
+VARIABLE_BUOYFORCE = True       !   [Boolean] default = True
+                                ! If true, the buoyancy forcing varies in time after the
+                                ! initialization of the model.
+BUOY_CONFIG = "zero"            !
+                                ! The character string that indicates how buoyancy forcing
+                                ! is specified. Valid options include (file), (zero),
+                                ! (linear), (USER), (BFB) and (NONE).
+WIND_CONFIG = "zero"            !
+                                ! The character string that indicates how wind forcing
+                                ! is specified. Valid options include (file), (2gyre),
+                                ! (1gyre), (gyres), (zero), and (USER).
+RESTOREBUOY = False             !   [Boolean] default = False
+                                ! If true, the buoyancy fluxes drive the model back
+                                ! toward some specified surface state with a rate
+                                ! given by FLUXCONST.
 LATENT_HEAT_FUSION = 3.34E+05   !   [J/kg] default = 3.34E+05
                                 ! The latent heat of fusion.
 LATENT_HEAT_VAPORIZATION = 2.5E+06 !   [J/kg] default = 2.5E+06
                                 ! The latent heat of fusion.
-MAX_P_SURF = 7.0E+04            !   [Pa] default = -1.0
-                                ! The maximum surface pressure that can be exerted by the
-                                ! atmosphere and floating sea-ice or ice shelves. This is
-                                ! needed because the FMS coupling structure does not
-                                ! limit the water that can be frozen out of the ocean and
-                                ! the ice-ocean heat fluxes are treated explicitly.  No
-                                ! limit is applied if a negative value is used.
-ADJUST_NET_SRESTORE_TO_ZERO = True !   [Boolean] default = True
-                                ! If true, adjusts the salinity restoring seen to zero
-                                ! whether restoring is via a salt flux or virtual precip.
-ADJUST_NET_SRESTORE_BY_SCALING = False !   [Boolean] default = False
-                                ! If true, adjustments to salt restoring to achieve zero net are
-                                ! made by scaling values without moving the zero contour.
-ADJUST_NET_FRESH_WATER_TO_ZERO = True !   [Boolean] default = False
-                                ! If true, adjusts the net fresh-water forcing seen
-                                ! by the ocean (including restoring) to zero.
-ADJUST_NET_FRESH_WATER_BY_SCALING = False !   [Boolean] default = False
-                                ! If true, adjustments to net fresh water to achieve zero net are
-                                ! made by scaling values without moving the zero contour.
-ICE_SALT_CONCENTRATION = 0.005  !   [kg/kg] default = 0.005
-                                ! The assumed sea-ice salinity needed to reverse engineer the
-                                ! melt flux (or ice-ocean fresh-water flux).
-USE_LIMITED_PATM_SSH = False    !   [Boolean] default = True
-                                ! If true, return the sea surface height with the
-                                ! correction for the atmospheric (and sea-ice) pressure
-                                ! limited by max_p_surf instead of the full atmospheric
-                                ! pressure.
-WIND_STAGGER = "C"              ! default = "C"
-                                ! A case-insensitive character string to indicate the
-                                ! staggering of the input wind stress field.  Valid
-                                ! values are 'A', 'B', or 'C'.
-FLUXCONST = 0.5                 !   [m day-1]
-                                ! The constant that relates the restoring surface fluxes
-                                ! to the relative surface anomalies (akin to a piston
-                                ! velocity).  Note the non-MKS units.
-SALT_RESTORE_FILE = "salt_restore.nc" ! default = "salt_restore.nc"
-                                ! A file in which to find the surface salinity to use for restoring.
-SALT_RESTORE_VARIABLE = "salt"  ! default = "salt"
-                                ! The name of the surface salinity variable to read from SALT_RESTORE_FILE for restoring salinity.
-SRESTORE_AS_SFLUX = False       !   [Boolean] default = False
-                                ! If true, the restoring of salinity is applied as a salt
-                                ! flux instead of as a freshwater flux.
-MAX_DELTA_SRESTORE = 999.0      !   [PSU or g kg-1] default = 999.0
-                                ! The maximum salinity difference used in restoring terms.
-MASK_SRESTORE_UNDER_ICE = False !   [Boolean] default = False
-                                ! If true, disables SSS restoring under sea-ice based on a frazil
-                                ! criteria (SST<=Tf). Only used when RESTORE_SALINITY is True.
-MASK_SRESTORE_MARGINAL_SEAS = False !   [Boolean] default = False
-                                ! If true, disable SSS restoring in marginal seas. Only used when
-                                ! RESTORE_SALINITY is True.
-BASIN_FILE = "basin.nc"         ! default = "basin.nc"
-                                ! A file in which to find the basin masks, in variable 'basin'.
-CD_TIDES = 0.0025               !   [nondim] default = 1.0E-04
-                                ! The drag coefficient that applies to the tides.
+GUST_CONST = 0.02               !   [Pa] default = 0.02
+                                ! The background gustiness in the winds.
 READ_GUST_2D = True             !   [Boolean] default = False
                                 ! If true, use a 2-dimensional gustiness supplied from
                                 ! an input file
-GUST_CONST = 0.02               !   [Pa] default = 0.02
-                                ! The background gustiness in the winds.
 GUST_2D_FILE = "gustiness_qscat.nc" !
                                 ! The file in which the wind gustiness is found in
                                 ! variable gustiness.
-USE_RIGID_SEA_ICE = False       !   [Boolean] default = False
-                                ! If true, sea-ice is rigid enough to exert a
-                                ! nonhydrostatic pressure that resist vertical motion.
-ALLOW_FLUX_ADJUSTMENTS = False  !   [Boolean] default = False
-                                ! If true, allows flux adjustments to specified via the
-                                ! data_table using the component name 'OCN'.
+
+! === module MOM_restart ===
+ICE_SHELF = False               !   [Boolean] default = False
+                                ! If true, enables the ice shelf model.
 
 ! === module MOM_sum_output ===
 CALCULATE_APE = True            !   [Boolean] default = True
@@ -1672,12 +1635,61 @@ ENERGYFILE = "ocean.stats"      ! default = "ocean.stats"
                                 ! summed diagnostics.
 DATE_STAMPED_STDOUT = True      !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
+TIMEUNIT = 8.64E+04             !   [s] default = 8.64E+04
+                                ! The time unit in seconds a number of input fields
 READ_DEPTH_LIST = False         !   [Boolean] default = False
                                 ! Read the depth list from a file if it exists or
                                 ! create that file otherwise.
 DEPTH_LIST_MIN_INC = 1.0E-10    !   [m] default = 1.0E-10
                                 ! The minimum increment between the depths of the
                                 ! entries in the depth-list file.
+
+! === module MOM_write_cputime ===
+MAXCPU = -1.0                   !   [wall-clock seconds] default = -1.0
+                                ! The maximum amount of cpu time per processor for which
+                                ! MOM should run before saving a restart file and
+                                ! quitting with a return value that indicates that a
+                                ! further run is required to complete the simulation.
+                                ! If automatic restarts are not desired, use a negative
+                                ! value for MAXCPU.  MAXCPU has units of wall-clock
+                                ! seconds, so the actual CPU time used is larger by a
+                                ! factor of the number of processors used.
+CPU_TIME_FILE = "CPU_stats"     ! default = "CPU_stats"
+                                ! The file into which CPU time is written.
+
+! === module MOM_main (MOM_driver) ===
+DT_FORCING = 3600.0             !   [s] default = 3600.0
+                                ! The time step for changing forcing, coupling with other
+                                ! components, or potentially writing certain diagnostics.
+                                ! The default value is given by DT.
+DO_ONLINE = False               !   [Boolean] default = True
+                                ! If true, use the model in prognostic mode where
+                                ! the barotropic and baroclinic dynamics, thermodynamics,
+                                ! etc. are stepped forward integrated in time.
+                                ! If false, the all of the above are bypassed with all
+                                ! fields necessary to integrate only the tracer advection
+                                ! and diffusion equation are read in from files stored from
+                                ! a previous integration of the prognostic model
+DAYMAX = 31.0                   !   [days]
+                                ! The final time of the whole simulation, in units of
+                                ! TIMEUNIT seconds.  This also sets the potential end
+                                ! time of the present run segment if the end time is
+                                ! not set via ocean_solo_nml in input.nml.
+RESTART_CONTROL = 1             ! default = 1
+                                ! An integer whose bits encode which restart files are
+                                ! written. Add 2 (bit 1) for a time-stamped file, and odd
+                                ! (bit 0) for a non-time-stamped file. A non-time-stamped
+                                ! restart file is saved at the end of the run segment
+                                ! for any non-negative value.
+RESTINT = 0.0                   !   [days] default = 0.0
+                                ! The interval between saves of the restart file in units
+                                ! of TIMEUNIT.  Use 0 (the default) to not save
+                                ! incremental restart files at all.
+ENERGYSAVEDAYS = 1.0            !   [days] default = 1.0
+                                ! The interval in units of TIMEUNIT between saves of the
+                                ! energies of the run and other globally summed diagnostics.
+
+! === module MOM_file_parser ===
 SEND_LOG_TO_STDOUT = False      !   [Boolean] default = False
                                 ! If true, all log messages are also sent to stdout.
 REPORT_UNUSED_PARAMS = False    !   [Boolean] default = False

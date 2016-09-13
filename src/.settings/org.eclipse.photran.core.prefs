@@ -1,0 +1,7 @@
+EnableContentAssist=true
+EnableDeclView=true
+EnableHoverTip=true
+EnableVPG=true
+FortranIncludePaths=/MOM6-ashao-forks\n
+FortranModulePaths=/MOM6-ashao-forks\n
+eclipse.preferences.version=1

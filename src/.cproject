@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="photran.managedbuild.toolchain.gnu.fortran.exe.debug.90451594">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="photran.managedbuild.toolchain.gnu.fortran.exe.debug.90451594" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildProperties="" description="" id="photran.managedbuild.toolchain.gnu.fortran.exe.debug.90451594" name="Debug" parent="org.eclipse.cdt.build.core.emptycfg">
+					<folderInfo id="photran.managedbuild.toolchain.gnu.fortran.exe.debug.90451594.755172539" name="/" resourcePath="">
+						<toolChain id="photran.managedbuild.toolchain.gnu.fortran.exe.debug.52908694" name="GCC Fortran" superClass="photran.managedbuild.toolchain.gnu.fortran.exe.debug">
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="photran.managedbuild.target.gnu.platform.exe.debug.1886383330" name="Debug Platform" osList="solaris,linux,hpux,aix,qnx" superClass="photran.managedbuild.target.gnu.platform.exe.debug"/>
+							<builder id="photran.managedbuild.target.gnu.builder.exe.debug.616514080" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="photran.managedbuild.target.gnu.builder.exe.debug"/>
+							<tool id="photran.managedbuild.tool.gnu.c.compiler.exe.debug.828097370" name="GCC C Compiler" superClass="photran.managedbuild.tool.gnu.c.compiler.exe.debug">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.757971948" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="photran.managedbuild.tool.gnu.fortran.compiler.exe.debug.527982223" name="GNU Fortran Compiler" superClass="photran.managedbuild.tool.gnu.fortran.compiler.exe.debug">
+								<inputType id="photran.managedbuild.tool.gnu.fortran.compiler.input.148533459" superClass="photran.managedbuild.tool.gnu.fortran.compiler.input"/>
+							</tool>
+							<tool id="photran.managedbuild.tool.gnu.fortran.linker.exe.debug.474145944" name="GNU Fortran Linker" superClass="photran.managedbuild.tool.gnu.fortran.linker.exe.debug"/>
+							<tool id="photran.managedbuild.tool.gnu.assembler.exe.debug.2132124306" name="GCC Assembler" superClass="photran.managedbuild.tool.gnu.assembler.exe.debug">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.98827132" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="MOM6-ashao-forks.null.1199725382" name="MOM6-ashao-forks"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/MOM6-ashao-forks"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="photran.managedbuild.toolchain.gnu.fortran.exe.debug.90451594;photran.managedbuild.toolchain.gnu.fortran.exe.debug.90451594.755172539">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="photran.managedbuild.toolchain.gnu.fortran.exe.debug.90451594;photran.managedbuild.toolchain.gnu.fortran.exe.debug.90451594.755172539;photran.managedbuild.tool.gnu.c.compiler.exe.debug.828097370;cdt.managedbuild.tool.gnu.c.compiler.input.757971948">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+</cproject>

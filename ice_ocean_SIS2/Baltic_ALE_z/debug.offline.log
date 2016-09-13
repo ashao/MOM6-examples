@@ -1,0 +1,62 @@
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+h-point: c=      9457 sw=      9310 se=      9320 nw=      9584 ne=      9587 MOM_grid_init/set_grid_metrics: dxT
+u-point: c=      9454 sw=      9328 se=      9330 nw=      9605 ne=      9601 MOM_grid_init/set_grid_metrics: dxCu
+v-point: c=     10056 sw=     10028 se=     10025 nw=      9861 ne=      9854 MOM_grid_init/set_grid_metrics: dxCv
+q-point: c=     10080 sw=     10030 se=     10036 nw=      9897 ne=      9904 MOM_grid_init/set_grid_metrics: dxBu
+h-point: c=     10659 sw=     10567 se=     10576 nw=     10567 ne=     10573 MOM_grid_init/set_grid_metrics: dyT
+u-point: c=     10617 sw=     10579 se=     10580 nw=     10563 ne=     10552 MOM_grid_init/set_grid_metrics: dyCu
+v-point: c=     10270 sw=     10178 se=     10201 nw=     10221 ne=     10253 MOM_grid_init/set_grid_metrics: dyCv
+q-point: c=     10347 sw=     10266 se=     10275 nw=     10286 ne=     10298 MOM_grid_init/set_grid_metrics: dyBu
+h-point: c=     10910 sw=     10865 se=     10861 nw=     10879 ne=     10879 MOM_grid_init/set_grid_metrics: IdxT
+u-point: c=     10919 sw=     10869 se=     10871 nw=     10893 ne=     10899 MOM_grid_init/set_grid_metrics: IdxCu
+v-point: c=     10679 sw=     10704 se=     10697 nw=     10730 ne=     10723 MOM_grid_init/set_grid_metrics: IdxCv
+q-point: c=     10704 sw=     10693 se=     10693 nw=     10741 ne=     10750 MOM_grid_init/set_grid_metrics: IdxBu
+h-point: c=      9615 sw=      9454 se=      9468 nw=      9766 ne=      9799 MOM_grid_init/set_grid_metrics: IdyT
+u-point: c=      9625 sw=      9467 se=      9474 nw=      9737 ne=      9748 MOM_grid_init/set_grid_metrics: IdyCu
+v-point: c=      9302 sw=      9180 se=      9168 nw=      9460 ne=      9464 MOM_grid_init/set_grid_metrics: IdyCv
+q-point: c=      9298 sw=      9141 se=      9155 nw=      9460 ne=      9475 MOM_grid_init/set_grid_metrics: IdyBu
+h-point: c=      9935 sw=      9870 se=      9878 nw=      9876 ne=      9907 MOM_grid_init/set_grid_metrics: areaT
+q-point: c=     10317 sw=     10427 se=     10417 nw=     10323 ne=     10334 MOM_grid_init/set_grid_metrics: areaBu
+h-point: c=     10557 sw=     10570 se=     10559 nw=     10611 ne=     10611 MOM_grid_init/set_grid_metrics: IareaT
+q-point: c=     10469 sw=     10370 se=     10370 nw=     10657 ne=     10654 MOM_grid_init/set_grid_metrics: IareaBu
+h-point: c=      2671 sw=      2117 se=      2186 nw=      3187 ne=      3249 MOM_grid_init/set_grid_metrics: geoLonT
+h-point: c=      4845 sw=      4338 se=      4353 nw=      5293 ne=      5312 MOM_grid_init/set_grid_metrics: geoLatT
+q-point: c=      2767 sw=      2203 se=      2259 nw=      3289 ne=      3345 MOM_grid_init/set_grid_metrics: geoLonBu
+q-point: c=      5389 sw=      4897 se=      4892 nw=      5919 ne=      5904 MOM_grid_init/set_grid_metrics: geoLatBu
+u-point: c=      2379 sw=      1819 se=      1888 nw=      2885 ne=      2951 MOM_grid_init/set_grid_metrics: geoLonCu
+u-point: c=      4844 sw=      4343 se=      4349 nw=      5313 ne=      5323 MOM_grid_init/set_grid_metrics: geoLatCu
+v-point: c=      3075 sw=      2480 se=      2544 nw=      3568 ne=      3631 MOM_grid_init/set_grid_metrics: geoLonCv
+v-point: c=      5384 sw=      4892 se=      4903 nw=      5879 ne=      5888 MOM_grid_init/set_grid_metrics: geoLatCv
+h-point: c=      4125 sw=      3972 se=      3829 nw=      4125 ne=      3968 MOM_initialize_fixed: depth 
+h-point: c=       980 MOM_initialize_fixed: mask2dT 
+u-point: c=       680 MOM_initialize_fixed: mask2dCu 
+v-point: c=       590 MOM_initialize_fixed: mask2dCv 
+q-point: c=       300 MOM_initialize_fixed: mask2dBu 
+q-point: c=      9837 MOM_initialize_fixed: f 
+h-point: c=      1502 MOM_initialize_fixed: dF_dx 
+h-point: c=     10459 MOM_initialize_fixed: dF_dy 
+             MOM_initialize_coord: Rlay     5.1684802000000E+04         1293
+          MOM_initialize_coord: g_prime     1.0062545314010E+01         1628
+u-point: c=         0 sw=         0 se=         0 nw=         0 ne=         0 MOM_initialize_state: u 
+v-point: c=         0 sw=         0 se=         0 nw=         0 ne=         0 MOM_initialize_state: v 
+h-point: c=     22256 sw=    101708 se=     99471 nw=    104998 ne=    102206 MOM_initialize_state: h 
+h-point: c=     96810 sw=     88114 se=     80683 nw=     95637 ne=     87596 MOM_initialize_state: T 
+h-point: c=     87987 sw=     80265 se=     73291 nw=     86921 ne=     79555 MOM_initialize_state: S 
+u-point: c=         0 sw=         0 se=         0 nw=         0 ne=         0 Pre ALE adjust init cond u
+v-point: c=         0 sw=         0 se=         0 nw=         0 ne=         0 Pre ALE adjust init cond v
+h-point: c=     22256 sw=    101708 se=     99471 nw=    104998 ne=    102206 Pre ALE adjust init cond h
+u-point: c=         0 sw=         0 se=         0 nw=         0 ne=         0 Post ALE adjust init cond u
+v-point: c=         0 sw=         0 se=         0 nw=         0 ne=         0 Post ALE adjust init cond v
+h-point: c=    540811 sw=    541604 se=    542199 nw=    540832 ne=    541529 Post ALE adjust init cond h
+u-point: c=    114542 sw=    103952 se=     92214 nw=    114542 ne=    101089 btcalc frhatu
+v-point: c=    100341 sw=    100341 se=     88306 nw=     97074 ne=     86693 btcalc frhatv
+h-point: c=    540811 sw=    541604 se=    542199 nw=    540832 ne=    541529 btcalc h
+
+WARNING: MPP_OPEN: File ./CPU_stats opened WRONLY already exists!
+
+
+WARNING: MPP_OPEN: File ./ocean.stats opened WRONLY already exists!
+
+
+FATAL: NETCDF ERROR: NetCDF: Index exceeds dimension bound File=ONLINE/00010101.off_transport.nc Field=uhtr_sum
+

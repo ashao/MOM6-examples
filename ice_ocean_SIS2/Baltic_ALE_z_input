@@ -1,0 +1,42 @@
+total 380
+-rw-r--r-- 1 ashao andrew  1890 Jun 17 16:24 analysis_vgrid_lev35.v1.nc
+-rw-r--r-- 1 ashao andrew 16044 Jun 17 16:24 atmos_hgrid.nc
+lrwxrwxrwx 1 ashao andrew    55 Jun 17 16:24 atmos_mosaic.nc -> .datasets/GOLD_SIS/riga/mosaic.unpacked/atmos_mosaic.nc
+-rw-r--r-- 1 ashao andrew 30408 Jun 17 16:24 atmos_mosaic_tile1Xland_mosaic_tile1.nc
+-rw-r--r-- 1 ashao andrew 23352 Jun 17 16:24 atmos_mosaic_tile1Xocean_mosaic_tile1.nc
+lrwxrwxrwx 1 ashao andrew    39 Jun 17 16:24 cfc.bc.nc -> .datasets/GOLD_SIS/riga/INPUT/cfc.bc.nc
+-rw-r--r-- 1 ashao andrew  3844 Jun 17 16:24 geothermal_heating_cm2g.nc
+lrwxrwxrwx 1 ashao andrew    51 Jun 17 16:24 GOLD_IC.2010.11.15.nc -> .datasets/GOLD_SIS/riga/INPUT/GOLD_IC.2010.11.15.nc
+-rw-r--r-- 1 ashao andrew 21732 Jun 17 16:24 grid_spec.nc
+-rw-r--r-- 1 ashao andrew  2804 Jun 17 16:24 gustiness_qscat.nc
+-rw-r--r-- 1 ashao andrew  7000 Jun 17 16:24 hycom1_50.nc
+-rw-r--r-- 1 ashao andrew 16044 Jun 17 16:24 land_hgrid.nc
+-rw-r--r-- 1 ashao andrew 19380 Jun 17 16:24 land_mask.nc
+-rw-r--r-- 1 ashao andrew 23352 Jun 17 16:24 land_mosaic_tile1Xocean_mosaic_tile1.nc
+-rw-r--r-- 1 ashao andrew   488 Jun 17 16:24 Layer_coord50.nc
+-rw-r--r-- 1 ashao andrew   592 Jun 17 16:24 Layer_coord.nc
+lrwxrwxrwx 1 ashao andrew    49 Jun 17 16:24 mosaic.nc -> .datasets/GOLD_SIS/riga/mosaic.unpacked/mosaic.nc
+lrwxrwxrwx 1 ashao andrew    49 Jun 17 16:24 ncar_precip_clim.nc -> .datasets/GOLD_SIS/riga/INPUT/ncar_precip_clim.nc
+lrwxrwxrwx 1 ashao andrew    46 Jun 17 16:24 ncar_rad_clim.nc -> .datasets/GOLD_SIS/riga/INPUT/ncar_rad_clim.nc
+-rw-r--r-- 1 ashao andrew  1104 Jun 17 16:24 NOTES
+-rw-r--r-- 1 ashao andrew 65712 Jun 17 16:24 ocean_hgrid.nc
+-rw-r--r-- 1 ashao andrew 19380 Jun 17 16:24 ocean_mask.nc
+-rw-r--r-- 1 ashao andrew 18072 Jun 17 16:24 ocean_mosaic.nc
+lrwxrwxrwx 1 ashao andrew    54 Jun 17 16:24 ocean_vgrid.nc -> .datasets/GOLD_SIS/riga/mosaic.unpacked/ocean_vgrid.nc
+lrwxrwxrwx 1 ashao andrew    47 Jun 17 16:24 ocmip2_cfc.res.nc -> .datasets/GOLD_SIS/riga/INPUT/ocmip2_cfc.res.nc
+lrwxrwxrwx 1 ashao andrew    42 Jun 17 16:24 OM3_zgrid.nc -> .datasets/GOLD_SIS/riga/INPUT/OM3_zgrid.nc
+lrwxrwxrwx 1 ashao andrew    46 Jun 17 16:24 q_10_mod.clim.nc -> .datasets/GOLD_SIS/riga/INPUT/q_10_mod.clim.nc
+lrwxrwxrwx 1 ashao andrew    39 Jun 17 16:24 runoff.nc -> .datasets/GOLD_SIS/riga/INPUT/runoff.nc
+-rw-r--r-- 1 ashao andrew 37560 Jun 17 16:24 salt_restore.nc
+-rw-r--r-- 1 ashao andrew 16888 Jun 17 16:24 seawifs_1998-2006_GOLD_smoothed_2X.nc
+-rw-r--r-- 1 ashao andrew  5620 Jun 17 16:24 sgs_h2.nc
+lrwxrwxrwx 1 ashao andrew    41 Jun 17 16:24 slp.clim.nc -> .datasets/GOLD_SIS/riga/INPUT/slp.clim.nc
+lrwxrwxrwx 1 ashao andrew    45 Jun 17 16:24 sst_ice_clim.nc -> .datasets/GOLD_SIS/riga/INPUT/sst_ice_clim.nc
+lrwxrwxrwx 1 ashao andrew    46 Jun 17 16:24 t_10_mod.clim.nc -> .datasets/GOLD_SIS/riga/INPUT/t_10_mod.clim.nc
+-rw-r--r-- 1 ashao andrew  5612 Jun 17 16:24 tideamp.nc
+lrwxrwxrwx 1 ashao andrew    48 Jun 17 16:24 tke_tidal_cm2p2.nc -> .datasets/GOLD_SIS/riga/INPUT/tke_tidal_cm2p2.nc
+-rw-r--r-- 1 ashao andrew  2936 Aug 24 15:35 topog.nc
+lrwxrwxrwx 1 ashao andrew    46 Jun 17 16:24 u_10_mod.clim.nc -> .datasets/GOLD_SIS/riga/INPUT/u_10_mod.clim.nc
+lrwxrwxrwx 1 ashao andrew    46 Jun 17 16:24 v_10_mod.clim.nc -> .datasets/GOLD_SIS/riga/INPUT/v_10_mod.clim.nc
+-rw-r--r-- 1 ashao andrew  1752 Jun 17 16:32 vgrid.nc
+lrwxrwxrwx 1 ashao andrew    35 Jun 17 16:24 WOA05_pottemp_salt.nc -> .datasets/obs/WOA05_pottemp_salt.nc

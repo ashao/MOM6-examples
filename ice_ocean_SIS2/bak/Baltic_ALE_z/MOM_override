@@ -1,0 +1,35 @@
+! Blank file in which we can put "overrides" for parameters
+NK = 50
+#override USE_REGRIDDING = True
+#override BULKMIXEDLAYER = False
+#override COORD_FILE = "Layer_coord50.nc"
+USE_STORED_SLOPES = True
+USE_NEUTRAL_DIFFUSION = True
+SIMPLE_TKE_TO_KD = True
+REGRIDDING_COORDINATE_MODE = "Z*"
+ALE_COORDINATE_CONFIG = "FILE:vgrid.nc,dz"
+HMIX_FIXED = 0.5
+CFL_TRUNCATE_RAMP_TIME = 7200.
+Z_INIT_ALE_REMAPPING = True
+ENERGETICS_SFC_PBL = True
+DO_ONLINE = False
+
+#override DIABATIC_FIST = False
+#override REGRID_TIME_SCALE = 864000
+OFFLINEDIR = "ONLINE/"
+OFF_SUM_FILE = "00010201.off_sum.nc"
+OFF_SNAP_FILE = "00010201.off_snap.nc"
+OFF_PREALE_FILE = "00010201.off_preale.nc" 
+#override START_INDEX = 1
+#override DT_OFFLINE = 86400
+#override NUM_OFF_ITER = 100
+#override NUMTIME = 1
+
+ADVECTION_TEST_X_ORIGIN = 19.5
+ADVECTION_TEST_Y_ORIGIN = 60.5
+ADVECTION_TEST_X_WIDTH = 1.0
+ADVECTION_TEST_Y_WIDTH = 1.0
+USE_ADVECTION_TEST_TRACER = True
+
+#override ENERGYSAVEDAYS = 1
+#override DEBUG = False

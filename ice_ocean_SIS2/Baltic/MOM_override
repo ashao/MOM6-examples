@@ -1,1 +1,12 @@
 ! Blank file in which we can put "overrides" for parameters
+BUOY_CONFIG = "zero"
+WIND_CONFIG = "zero"
+
+OFFLINEDIR = "ONLINE/"
+OFF_SUM_FILE = "00010101.off_sum.nc"
+OFF_SNAP_FILE = "00010101.off_snap.nc"
+#override START_INDEX = 1
+#override DT_OFFLINE = 86400
+#override NUM_OFF_ITER = 100
+#override NUMTIME = 31
+DO_ONLINE = False

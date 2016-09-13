@@ -23,8 +23,8 @@
  /
 
  &coupler_nml
-            months = 0,
-            days   = 5,
+            months = 1,
+            days   = 0,
             current_date = 1,1,1,0,0,0,
             hours = 0
             minutes = 0
@@ -73,4 +73,12 @@
  &xgrid_nml
             make_exchange_reproduce = .false.
             interp_method = 'second_order' /
+ &ocean_solo_nml
+            months =1
+            days   = 0
+            date_init = 1,1,1,0,0,0
+            hours = 0
+            minutes = 0
+            seconds = 0
+            calendar = 'julian' /
 

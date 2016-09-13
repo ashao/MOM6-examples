@@ -1,0 +1,36 @@
+GOLD_SIS
+1 1 1 0 0 0
+#output files
+
+"off_snap",     1, "days", 1, "days", "time"
+"off_sum",	1, "days", 1, "days", "time"
+"off_mean",     1, "days", 1, "days", "time"
+"off_preale",   1, "days", 1, "days", "time"
+"ocean_snap",   1, "days", 1, "days", "time"
+
+"ocean_model","ea","ea_sum","off_sum","all",sum,"none",1
+"ocean_model","eb","eb_sum","off_sum","all",sum,"none",1
+"ocean_model","uhtr_preadv","uhtr_preadv","off_sum","all",sum,"none",1
+"ocean_model","vhtr_preadv","vhtr_preadv","off_sum","all",sum,"none",1
+"ocean_model","KHDT_x","khdt_x","off_sum","all",sum,"none",1
+"ocean_model","KHDT_y","khdt_y","off_sum","all",sum,"none",1
+
+"ocean_model","h","h_end","off_snap","all",.false.,"none",1
+"ocean_model","temp_preadv","temp_preadv","off_snap","all",.false.,"none",1
+"ocean_model","salt_preadv","salt_preadv","off_snap","all",.false.,"none",1
+
+"ocean_model","u_preale","u_preale","off_preale","all",.false.,"none",1
+"ocean_model","v_preale","v_preale","off_preale","all",.false.,"none",1
+"ocean_model","h_preale","h_preale","off_preale","all",.false.,"none",1
+"ocean_model","T_preale","T_preale","off_preale","all",.false.,"none",1
+"ocean_model","S_preale","S_preale","off_preale","all",.false.,"none",1
+
+"ocean_model","ear","ear","off_snap","all",.false.,"none",1
+"ocean_model","ebr","ebr","off_snap","all",.false.,"none",1
+"ocean_model","uhr","uhr","off_snap","all",.false.,"none",1
+"ocean_model","vhr","vhr","off_snap","all",.false.,"none",1
+"ocean_model","tr1","tr1","off_snap","all",.false.,"none",1
+"ocean_model","age","age","off_snap","all",.false.,"none",1
+
+
+
